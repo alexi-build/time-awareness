@@ -49,6 +49,7 @@ export default function Command() {
         <MenuBarExtra.Item
           icon={Icon.Clock}
           title="Reset Session Time"
+          shortcut={{ modifiers: ["cmd", "shift"], key: "r" }}
           onAction={async () => {
             await resetSessionTimeOnly();
             revalidate();
@@ -65,7 +66,6 @@ export default function Command() {
         <MenuBarExtra.Item
           icon={Icon.Trash}
           title="Reset All"
-          shortcut={{ modifiers: ["cmd", "shift"], key: "r" }}
           onAction={async () => {
             await resetActiveState();
             revalidate();
