@@ -5,7 +5,6 @@ export interface ParsedPreferences {
   activeIntervalSeconds: number;
   activeIntervalMinutes: number;
   idleThresholdSeconds: number;
-  enableConfetti: boolean;
 }
 
 export function getParsedPreferences(): ParsedPreferences {
@@ -18,6 +17,5 @@ export function getParsedPreferences(): ParsedPreferences {
     activeIntervalSeconds: activeIntervalMinutes * 60,
     activeIntervalMinutes,
     idleThresholdSeconds,
-    enableConfetti: preferences.enableConfetti ?? true,
   };
 }

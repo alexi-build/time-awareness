@@ -21,10 +21,8 @@ export async function processActiveState(): Promise<ActiveState> {
     return state;
   }
 
-  const timeSinceLastCheck = Math.floor((now - state.lastCheckTime) / 1000); // Convert milliseconds to seconds
+  const timeSinceLastCheck = Math.floor((now - state.lastCheckTime) / 1000);
 
-  // If time since last check is much larger than expected (e.g., laptop was closed),
-  // treat it as if the user was idle the entire time
   if (timeSinceLastCheck > idleThresholdSeconds) {
     state.accumulatedActiveSeconds = 0;
     state.lastCheckTime = now;
@@ -34,7 +32,6 @@ export async function processActiveState(): Promise<ActiveState> {
     return state;
   }
 
-  // Subtract idle time from active time to avoid counting breaks under the threshold
   const activeTimeToAdd = Math.max(0, timeSinceLastCheck - currentIdleSeconds);
   const previousMilestones = Math.floor(state.accumulatedActiveSeconds / activeIntervalSeconds);
 
@@ -47,6 +44,11 @@ export async function processActiveState(): Promise<ActiveState> {
 
   if (state.shouldNotify) {
     state.sessionCount += 1;
+    state.achievementTimestamp = Date.now();
+  }
+
+  if (state.achievementTimestamp && now - state.achievementTimestamp > 10000) {
+    state.achievementTimestamp = undefined;
   }
 
   await saveActiveState(state);

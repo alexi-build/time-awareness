@@ -67,3 +67,13 @@ export async function resetActiveState(): Promise<void> {
   };
   await saveActiveState(newState);
 }
+
+export async function getConfettiEnabled(): Promise<boolean> {
+  const stored = await LocalStorage.getItem<string>(STORAGE_KEYS.CONFETTI_ENABLED);
+  if (stored === undefined) return true;
+  return stored === "true";
+}
+
+export async function setConfettiEnabled(enabled: boolean): Promise<void> {
+  await LocalStorage.setItem(STORAGE_KEYS.CONFETTI_ENABLED, enabled.toString());
+}

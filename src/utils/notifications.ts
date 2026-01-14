@@ -1,11 +1,8 @@
 import { open, showHUD } from "@raycast/api";
-import { getParsedPreferences } from "./preferences";
+import { getConfettiEnabled } from "./storage";
 
-/**
- * Triggers a custom Raycast notification and celebration when an interval is complete.
- */
 export async function triggerIntervalCompleteNotification(minutes: number): Promise<void> {
-  const { enableConfetti } = getParsedPreferences();
+  const enableConfetti = await getConfettiEnabled();
   try {
     await showHUD(`🩷 You have been active for ${minutes} minutes`);
     if (enableConfetti) {
