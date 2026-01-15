@@ -6,3 +6,10 @@ export interface ActiveState {
   shouldNotify: boolean;
   achievementTimestamp?: number;
 }
+
+export interface SessionStats {
+  activeSeconds: number;
+  sessionCount: number;
+  isIdle: boolean;
+  showAchievement: boolean;
+}

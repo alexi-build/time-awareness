@@ -11,4 +11,13 @@ export const STORAGE_KEYS = {
 
 export const ICONS = {
   IDLE_HEART: "🩶",
+  ACHIEVEMENT: "🩷",
+} as const;
+
+export const MESSAGES = {
+  ERROR: {
+    ACTIVE_STATE_CHECK: "Failed to check active status",
+    RESET_FAILED: "Failed to reset session",
+    STORAGE_ERROR: "Failed to access storage",
+  },
 } as const;

@@ -7,6 +7,12 @@ export interface ParsedPreferences {
   idleThresholdSeconds: number;
 }
 
+/**
+ * Retrieves and parses user preferences with fallback to defaults.
+ * Converts string preferences to numbers and performs validation.
+ *
+ * @returns {ParsedPreferences} Parsed preference values with computed fields
+ */
 export function getParsedPreferences(): ParsedPreferences {
   const preferences = getPreferenceValues<Preferences>();
 
